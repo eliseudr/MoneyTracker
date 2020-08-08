@@ -10,10 +10,6 @@ Classe responsavel pela tela de login e cadastro
 */
 
 public class Entrada extends JFrame implements ActionListener {
-
-	public static void main(String[] args) {
-	
-	}
 	
 	JFrame janela = new JFrame();
 	
@@ -37,6 +33,7 @@ public class Entrada extends JFrame implements ActionListener {
 		label1.setText("Nome:");
 		label1.setBounds(20, 60, 200, 100);
 		//label1.setBounds(x, y, width, height);
+		// ************* POSIÇAO NO `CANVAS` **************
 	
 		//Campo para digitar nome
 		JTextField texto = new JTextField();

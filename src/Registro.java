@@ -1,3 +1,4 @@
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
@@ -17,6 +18,12 @@ public class Registro extends JFrame implements ActionListener {
 		registro.setSize(300, 400); 
 		registro.setVisible(true);
 		registro.setLocationRelativeTo(null);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
