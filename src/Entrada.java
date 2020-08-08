@@ -12,12 +12,14 @@ Classe responsavel pela tela de login e cadastro
 public class Entrada extends JFrame implements ActionListener {
 
 	public static void main(String[] args) {
-		
+	
 	}
 	
+	JFrame janela = new JFrame();
+	
 	void abrirJanela() {
-		JFrame janela = new JFrame();
-
+		
+		
 		janela.setTitle("Money Tracker ");
 		
 		//Botao "Entrar"
@@ -48,6 +50,7 @@ public class Entrada extends JFrame implements ActionListener {
 		janela.setSize(300, 400);    
 		janela.setLayout(null);    
 		janela.setVisible(true);    
+		janela.setLocationRelativeTo(null); //Abrir janela no meio da tela
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		
 	}
@@ -58,8 +61,24 @@ public class Entrada extends JFrame implements ActionListener {
 		//Checando se o botao foi clicado
 		if( e.getActionCommand().equals("Entrar")) {
 			//Abrir App
+			//Fechando janela anterior
+			janela.setVisible(false);
+			
+			//Instanciando metodo HOME
+			Home home = new Home();
+			home.janelaHome();
+			
+			//Confirmando event listener
 			System.out.println("Entrar selecionado");
+			
 		}else if( e.getActionCommand().equals("Cadastrar")){
+			//Fechando janela anterior
+			janela.setVisible(false);
+			
+			//Instanciando Registro
+			Registro registro = new Registro();
+			registro.janelaRegistro();
+			
 			//Abrir janela de cadastro novo usario
 			System.out.println("Cadastro selecionado");
 		}
