@@ -20,24 +20,24 @@ public class Entrada extends JFrame implements ActionListener {
 		
 		//Botao "Entrar"
 		JButton entrar = new JButton("Entrar");
-		entrar.setBounds(35, 200, 100, 40);
+		entrar.setBounds(50, 200, 180, 40);
 		entrar.addActionListener(this);
 		
 		//Botao "Cadastrar"
-		JButton cadastrar = new JButton("Cadastrar");
-		cadastrar.setBounds(145, 200, 100, 40);
+		JButton cadastrar = new JButton("Registre-se");
+		cadastrar.setBounds(50, 260, 180, 40);
 		cadastrar.addActionListener(this);
 		
 		//Botao "Nome:"
 		JLabel label1 = new JLabel();
 		label1.setText("Nome:");
-		label1.setBounds(20, 60, 200, 100);
+		label1.setBounds(20, 65, 200, 100);
 		//label1.setBounds(x, y, width, height);
 		// ************* POSIÇAO NO `CANVAS` **************
 	
 		//Campo para digitar nome
 		JTextField texto = new JTextField();
-		texto.setBounds(110, 100, 130, 30);
+		texto.setBounds(65, 100, 190, 30);
 		
 		//Adicionando na janela
 		janela.add(texto);
@@ -68,7 +68,7 @@ public class Entrada extends JFrame implements ActionListener {
 			//Confirmando event listener
 			System.out.println("Entrar selecionado");
 			
-		}else if( e.getActionCommand().equals("Cadastrar")){
+		}else if( e.getActionCommand().equals("Registre-se")){
 			//Fechando janela anterior
 			janela.setVisible(false);
 			
