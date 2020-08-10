@@ -1,4 +1,3 @@
-import java.awt.TextField;
 import java.awt.event.*;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -11,6 +10,10 @@ Classe responsavel pela tela de login e cadastro
 
 public class Entrada extends JFrame implements ActionListener {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JFrame janela = new JFrame();
 	
 	void abrirJanela() {
@@ -72,9 +75,6 @@ public class Entrada extends JFrame implements ActionListener {
 			//Instanciando Registro
 			Registro registro = new Registro();
 			registro.janelaRegistro();
-			
-			//Abrir janela de cadastro novo usario
-			System.out.println("Cadastro selecionado");
 		}
 		
 	}

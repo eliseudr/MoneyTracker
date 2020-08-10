@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -49,8 +48,8 @@ public class Home extends JFrame implements ActionListener {
 		visaoGeral.setBounds(20, 50, 0, 0);;
 		visaoGeral.setSize(new Dimension(970, 400));
 		//Label Visao Geral
-		labelVisaoGeral.setBounds(40, 60, 200, 40);
-		labelVisaoGeral.setFont(new Font("Calibri", Font.BOLD, 32));
+		labelVisaoGeral.setBounds(40, 60, 280, 60);
+		labelVisaoGeral.setFont(new Font("Calibri", Font.BOLD, 54));
 		labelVisaoGeral.setForeground(Color.white);
 		labelVisaoGeral.addMouseListener(new MouseListener() {
 			
@@ -69,21 +68,21 @@ public class Home extends JFrame implements ActionListener {
 			
 			@Override
 			public void mouseExited(MouseEvent e) {
-				labelVisaoGeral.setFont(new Font("Calibri", Font.BOLD, 32));
+				labelVisaoGeral.setFont(new Font("Calibri", Font.BOLD, 54));
 				
 			}
 			
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				labelVisaoGeral.setFont(new Font("Calibri", Font.BOLD, 34));
+				labelVisaoGeral.setFont(new Font("Calibri", Font.BOLD, 56));
 				
 			}
-			
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//**EXPANDIR JANELA DE VISAO GERAL**
-				
+				//Click
 			}
+			
 		});
 		
 		/**********************************************/
@@ -94,12 +93,6 @@ public class Home extends JFrame implements ActionListener {
 		labelTransferencias.setFont(new Font("Calibri", Font.BOLD, 32));
 		labelTransferencias.setForeground(Color.white);
 		labelTransferencias.addMouseListener(new MouseListener() {
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// **EXPANDIR JANELA DE HISTORICOS**
-				
-			}
 
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -123,6 +116,10 @@ public class Home extends JFrame implements ActionListener {
 			public void mouseExited(MouseEvent e) {
 				labelTransferencias.setFont(new Font("Calibri", Font.BOLD, 32));
 				
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {	
 			}			
 		});
 		
@@ -135,12 +132,6 @@ public class Home extends JFrame implements ActionListener {
 		labelHistorico.setFont(new Font("Calibri", Font.BOLD, 32));
 		labelHistorico.setForeground(Color.white);
 		labelHistorico.addMouseListener(new MouseListener() {
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// EXPANDIR JANELA DE HISTORICOS
-				
-			}
 
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -164,6 +155,10 @@ public class Home extends JFrame implements ActionListener {
 			public void mouseExited(MouseEvent e) {
 				labelHistorico.setFont(new Font("Calibri", Font.BOLD, 32));
 				
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {			
 			}
 			
 		});
