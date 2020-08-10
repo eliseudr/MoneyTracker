@@ -65,9 +65,6 @@ public class Entrada extends JFrame implements ActionListener {
 			Home home = new Home();
 			home.janelaHome();
 			
-			//Confirmando event listener
-			System.out.println("Entrar selecionado");
-			
 		}else if( e.getActionCommand().equals("Registre-se")){
 			//Fechando janela anterior
 			janela.setVisible(false);
