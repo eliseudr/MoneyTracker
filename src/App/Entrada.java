@@ -1,7 +1,9 @@
+package App;
 import java.awt.event.*;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 /*
@@ -16,38 +18,49 @@ public class Entrada extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	JFrame janela = new JFrame();
 	
+	JButton entrar = new JButton("Entrar");
+	JButton cadastrar = new JButton("Registre-se");
+	JLabel label1 = new JLabel();
+	JLabel label2 = new JLabel();
+	JTextField nomeUsuario = new JTextField();
+	JPasswordField senhaUsuario = new JPasswordField(20);
+	
 	void abrirJanela() {
 		
 		
 		janela.setTitle("Money Tracker ");
 		
 		//Botao "Entrar"
-		JButton entrar = new JButton("Entrar");
 		entrar.setBounds(50, 200, 180, 40);
 		entrar.addActionListener(this);
 		
 		//Botao "Cadastrar"
-		JButton cadastrar = new JButton("Registre-se");
 		cadastrar.setBounds(50, 260, 180, 40);
 		cadastrar.addActionListener(this);
 		
 		//Botao "Nome:"
-		JLabel label1 = new JLabel();
 		label1.setText("Nome:");
-		label1.setBounds(20, 65, 200, 100);
+		label1.setBounds(20, 35, 200, 100);
 		//label1.setBounds(x, y, width, height);
 		// ************* POSIÇAO NO `CANVAS` **************
+		
+		label2.setText("Senha:");
+		label2.setBounds(20, 75, 200, 100);
 	
 		//Campo para digitar nome
-		JTextField texto = new JTextField();
-		texto.setBounds(65, 100, 190, 30);
+		nomeUsuario.setBounds(65, 70, 190, 30);
+		
+		//Campo para digitar senha
+		senhaUsuario.setBounds(65, 110, 190, 30);
 		
 		//Adicionando na janela
-		janela.add(texto);
+		janela.add(nomeUsuario);
+		janela.add(senhaUsuario);
 		janela.add(label1);
+		janela.add(label2);
 		janela.add(entrar);
 		janela.add(cadastrar);
-		janela.setSize(300, 400);    
+		janela.setSize(300, 400);
 		janela.setLayout(null);    
 		janela.setVisible(true);    
 		janela.setLocationRelativeTo(null); //Abrir janela no meio da tela
@@ -69,10 +82,11 @@ public class Entrada extends JFrame implements ActionListener {
 			home.janelaHome();
 			
 		}else if( e.getActionCommand().equals("Registre-se")){
+			
 			//Fechando janela anterior
 			janela.setVisible(false);
 			
-			//Instanciando Registro
+			//Abrir janela de registro
 			Registro registro = new Registro();
 			registro.janelaRegistro();
 		}

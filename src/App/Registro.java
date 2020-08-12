@@ -1,16 +1,18 @@
+package App;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Connection;
+import java.sql.*;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import java.util.*;
-import java.io.*;
+import database.Conexao;
+import database.Incluir;
 
 /*
  * 
@@ -20,6 +22,13 @@ import java.io.*;
 
 public class Registro extends JFrame implements ActionListener {
 	
+	Connection con = null;
+	ResultSet rs = null;
+	PreparedStatement pst = null;
+	
+	Incluir inc = new Incluir();
+	Usuarios objpes = new Usuarios();
+		
 	JFrame registro = new JFrame();
 	
 	JLabel email = new JLabel("E-mail: ");
@@ -29,28 +38,12 @@ public class Registro extends JFrame implements ActionListener {
 	JTextField usuarioTexto = new JTextField();
 
 	JLabel senhaLabel = new JLabel("Senha: ");
-	JPasswordField senhaTexto = new JPasswordField(20);
+	JTextField senhaTexto = new JTextField(20);
 	
 	JLabel senhaConfirmacao = new JLabel("Senha*: ");
-	JPasswordField senhaConfirmacaoTexto = new JPasswordField(20);
-	
-	File file = new File("USERDATA.txt");
-
-	public static void main(String[] args) throws Exception {
-		
-	File file = new File("USERDATA.txt");
-		
-			if(!file.exists()) {
-				file.createNewFile();
-			}else {
-				System.out.println("Arquivo ja existe");
-			}
-	}
-	
+	JTextField senhaConfirmacaoTexto = new JTextField(20);
 	
 	void janelaRegistro() {
-		
-		//String filepath = "usuarios.txt";
 		
 		//Inserção do usuario
 		usuario.setBounds(20, 80, 60, 30);
@@ -87,8 +80,6 @@ public class Registro extends JFrame implements ActionListener {
 		registro.add(senhaConfirmacaoTexto);
 		registro.add(voltar);
 		
-		//Salvando senha(HIDDEN)
-		char[] senha = senhaTexto.getPassword();
 	}
 
 	@Override
@@ -97,44 +88,25 @@ public class Registro extends JFrame implements ActionListener {
 		//Botao cadastrar
 		if(e.getActionCommand().equals("Cadastrar")) {
 			
-			if(Arrays.equals(senhaTexto.getPassword(), senhaConfirmacaoTexto.getPassword())) {
-				System.out.println("confirmaçao efetuada");
-				
-				if(file.exists()) {
-					try {
-						FileWriter fw = new FileWriter(file, true);
-						BufferedWriter bw = new BufferedWriter(fw);
-						
-						usuarioTexto.write(bw);
-						senhaTexto.write(bw);
-						bw.newLine();
-						bw.close();
-						
-					} catch (IOException e1) {
-						e1.printStackTrace();
-						System.out.println("ERROR !!!");
+			objpes = new Usuarios();
+			objpes.setNome(usuarioTexto.getText());
+			objpes.setSenha(senhaTexto.getText());
+			
+			inc = new Incluir();
+			
+				try {
+					if(inc.Incluir(objpes)) {
+						JOptionPane.showMessageDialog(this, "Registro salvo com sucesso!");
 					}
 					
-				}else {
-						// Escrevendo em um novo arquivo
-					try {
-						FileWriter fw = new FileWriter(file);
-						BufferedWriter bw = new BufferedWriter(fw);
-					
-						usuarioTexto.write(fw);
-						senhaTexto.write(fw);
-						bw.newLine();
-						bw.close();
-					} catch (IOException e1) {
-						e1.printStackTrace();
-						System.out.println("ERROR !!!");
-					}
+				}catch(Exception e1) {
+					JOptionPane.showMessageDialog(null, "ERROR");
 				}
 				
 				/********************************/
 				//Fechar e abrir nova janela de logIn
 				registro.setVisible(false);
-			
+				
 				Entrada entrada = new Entrada();
 				entrada.abrirJanela();
 				/********************************/
@@ -142,7 +114,6 @@ public class Registro extends JFrame implements ActionListener {
 		}else {
 			System.out.println("Senha incorreta");
 			}
-		}
 		
 		//Botao voltar
 		if(e.getActionCommand().equals("Voltar")) {
@@ -151,5 +122,5 @@ public class Registro extends JFrame implements ActionListener {
 			Entrada entrada = new Entrada();
 			entrada.abrirJanela();
 		}	
-	}
+	}	
 }
