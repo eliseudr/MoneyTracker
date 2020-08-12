@@ -3,7 +3,6 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -41,17 +40,17 @@ public class Registro extends JFrame implements ActionListener {
 		
 	File file = new File("USERDATA.txt");
 		
-			if(file.exists()) {
+			if(!file.exists()) {
 				file.createNewFile();
+			}else {
+				System.out.println("Arquivo ja existe");
 			}
-	
-		//String file = "C:\\Users\\Eliseu\\Desktop";
 	}
 	
 	
 	void janelaRegistro() {
 		
-		String filepath = "usuarios.txt";
+		//String filepath = "usuarios.txt";
 		
 		//Inserção do usuario
 		usuario.setBounds(20, 80, 60, 30);
@@ -100,24 +99,46 @@ public class Registro extends JFrame implements ActionListener {
 			
 			if(Arrays.equals(senhaTexto.getPassword(), senhaConfirmacaoTexto.getPassword())) {
 				System.out.println("confirmaçao efetuada");
-			
-				// Escrevendo no arquivo
-				try {
-					FileWriter fw = new FileWriter(file);
-					usuarioTexto.write(fw);
-					senhaTexto.write(fw);
-					fw.close();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-					System.out.println("ERROR !!!");
+				
+				if(file.exists()) {
+					try {
+						FileWriter fw = new FileWriter(file, true);
+						BufferedWriter bw = new BufferedWriter(fw);
+						
+						usuarioTexto.write(bw);
+						senhaTexto.write(bw);
+						bw.newLine();
+						bw.close();
+						
+					} catch (IOException e1) {
+						e1.printStackTrace();
+						System.out.println("ERROR !!!");
+					}
+					
+				}else {
+						// Escrevendo em um novo arquivo
+					try {
+						FileWriter fw = new FileWriter(file);
+						BufferedWriter bw = new BufferedWriter(fw);
+					
+						usuarioTexto.write(fw);
+						senhaTexto.write(fw);
+						bw.newLine();
+						bw.close();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+						System.out.println("ERROR !!!");
+					}
 				}
+				
 				/********************************/
 				//Fechar e abrir nova janela de logIn
 				registro.setVisible(false);
-				
+			
 				Entrada entrada = new Entrada();
 				entrada.abrirJanela();
 				/********************************/
+				
 		}else {
 			System.out.println("Senha incorreta");
 			}
