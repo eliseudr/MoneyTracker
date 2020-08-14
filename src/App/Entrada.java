@@ -1,8 +1,13 @@
 package App;
 import java.awt.event.*;
+import database.Conexao;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -11,6 +16,10 @@ Classe responsavel pela tela de login e cadastro
 */
 
 public class Entrada extends JFrame implements ActionListener {
+	
+	Connection conn = null;
+	ResultSet rs = null;
+	PreparedStatement pst = null; 
 	
 	/**
 	 * 
@@ -26,7 +35,6 @@ public class Entrada extends JFrame implements ActionListener {
 	JPasswordField senhaUsuario = new JPasswordField(20);
 	
 	void abrirJanela() {
-		
 		
 		janela.setTitle("Money Tracker ");
 		
@@ -73,13 +81,47 @@ public class Entrada extends JFrame implements ActionListener {
 		
 		//Checando se o botao foi clicado
 		if( e.getActionCommand().equals("Entrar")) {
-			//Abrir App
-			//Fechando janela anterior
-			janela.setVisible(false);
 			
-			//Instanciando metodo HOME
-			Home home = new Home();
-			home.janelaHome();
+			//Autenticando no SQLITE
+			/*********************************/
+					
+				try { 
+					
+					Conexao connect = new Conexao();
+					conn = connect.getConexao();
+					
+					String sql = "select * from usuarios where nome='" + nomeUsuario.getText() + "' and senha='" + senhaUsuario.getText() + "'";	
+					PreparedStatement pst = conn.prepareStatement(sql);
+					ResultSet rs = pst.executeQuery();
+					
+					int count =0;
+					
+					
+					while( rs.next() ) {
+						count = count+1;
+					}
+					
+					if(count == 1) {
+						JOptionPane.showMessageDialog(null, "Usuario e senha estão corretos!");
+						janela.setVisible(false);
+						
+						Home home = new Home();
+						home.janelaHome();
+						
+					}
+					else if(count > 1) {
+						JOptionPane.showMessageDialog(null, "Usuario e senha duplicados");
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Usuario/Senha incorreto!");
+					}
+					
+					rs.close();
+					pst.close();
+					
+				}catch(Exception e1){
+					JOptionPane.showMessageDialog(null, "pica");
+				}
 			
 		}else if( e.getActionCommand().equals("Registre-se")){
 			

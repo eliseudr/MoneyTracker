@@ -38,10 +38,10 @@ public class Registro extends JFrame implements ActionListener {
 	JTextField usuarioTexto = new JTextField();
 
 	JLabel senhaLabel = new JLabel("Senha: ");
-	JTextField senhaTexto = new JTextField(20);
+	JPasswordField senhaTexto = new JPasswordField();
 	
 	JLabel senhaConfirmacao = new JLabel("Senha*: ");
-	JTextField senhaConfirmacaoTexto = new JTextField(20);
+	JPasswordField senhaConfirmacaoTexto = new JPasswordField();
 	
 	void janelaRegistro() {
 		
